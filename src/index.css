@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-dark-900 text-dark-100;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent-600 text-white hover:bg-accent-700 px-4 py-2 rounded-md transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 font-display;
+  }
+  
+  .btn-secondary {
+    @apply bg-dark-700 text-dark-100 hover:bg-dark-600 px-4 py-2 rounded-md transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 font-display;
+  }
+
+  .card {
+    @apply bg-dark-800 rounded-lg shadow-lg border border-dark-700 hover:border-accent-500/50 transition-all duration-300;
+  }
+
+  .input {
+    @apply bg-dark-800 border border-dark-600 rounded-md px-3 py-2 text-dark-100 focus:outline-none focus:ring-2 focus:ring-accent-600 focus:border-transparent transition-all duration-200;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-lg bg-dark-800/80;
+  }
+
+  /* Loading animation */
+  .loading-dots {
+    @apply inline-flex space-x-1;
+  }
+
+  .loading-dots div {
+    @apply w-2 h-2 bg-current rounded-full animate-pulse;
+    animation-delay: calc(var(--dot-index) * 0.16s);
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply animate-pulse bg-dark-700 rounded;
+  }
+
+  /* Fade animations */
+  .fade-enter {
+    @apply opacity-0;
+  }
+
+  .fade-enter-active {
+    @apply opacity-100 transition-opacity duration-300;
+  }
+
+  .fade-exit {
+    @apply opacity-100;
+  }
+
+  .fade-exit-active {
+    @apply opacity-0 transition-opacity duration-300;
+  }
+
+  /* Scale animations */
+  .scale-enter {
+    @apply scale-95 opacity-0;
+  }
+
+  .scale-enter-active {
+    @apply scale-100 opacity-100 transition-all duration-200;
+  }
+
+  .scale-exit {
+    @apply scale-100 opacity-100;
+  }
+
+  .scale-exit-active {
+    @apply scale-95 opacity-0 transition-all duration-200;
+  }
+
+  /* Button hover effects */
+  .btn-hover-effect {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-hover-effect::after {
+    @apply absolute inset-0 bg-white/20 transform scale-x-0 origin-left transition-transform duration-300;
+    content: '';
+  }
+
+  .btn-hover-effect:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* Input focus animation */
+  .input-focus-effect {
+    @apply relative;
+  }
+
+  .input-focus-effect::after {
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-accent-500 transform scale-x-0 transition-transform duration-300;
+    content: '';
+  }
+
+  .input-focus-effect:focus-within::after {
+    @apply scale-x-100;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-dark-600 rounded-full hover:bg-dark-500 transition-colors duration-200;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-500 to-accent-600;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+/* Shimmer effect for skeletons */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    theme('colors.dark.700') 25%,
+    theme('colors.dark.600') 37%,
+    theme('colors.dark.700') 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
